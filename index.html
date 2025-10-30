@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75+ Cancer Screeners — Landing</title>
+
+<!-- Tailwind v2.2.19 and Alpine.js -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.1/cdn.min.js"></script>
+
+<style>[x-cloak]{display:none!important} @media print{button, .no-print{display:none!important}}</style>
+
+<style>
+  .text-custom-blue { color: #018392 !important; }
+  .btn-custom { background-color: #018392 !important; color: white !important; }
+  .btn-custom:hover { background-color: #016b76 !important; }
+  .btn-disabled { background-color: #e5e7eb !important; color: #6b7280 !important; cursor: not-allowed; }
+  .progress-bar { background-color: #018392 !important; }
+</style>
+
+<style>
+  /* Scale root font-size to visually match calculators */
+  html { font-size: 17px; }              /* ~+6% on small screens */
+  @media (min-width: 768px) {
+    html { font-size: 18px; }            /* ~+12.5% on md+ */
+  }
+</style>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen text-gray-800">
+<main id="main">
+  <div class="max-w-6xl mx-auto px-4 py-6">
+    <header class="mb-6 text-center">
+      <h1 class="text-2xl font-bold text-center uppercase text-custom-blue">75+ Cancer Screener (75+CS)</h1>
+
+      <div class="mt-1 text-center text-gray-500 text-xs md:text-sm leading-relaxed">
+        <div class="mt-1">
+          <strong>Discipline of Geriatrics and Gerontology, Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.</strong>
+        </div>
+        <div class="mt-1">
+          <strong>Authors:</strong> Marianne Wolff Rezende Teixeira, MD (UNIFESP); Matheus de Oliveira Barros, MD (UNIFESP); Luciano Pereira Soares, PhD (Insper); Adriana Bruscato Bortoluzzo, PhD (Insper); Maysa Seabra Cendoroglo, MD, PhD (UNIFESP); Gisele Wally Braga Colleoni, MD, PhD (UNIFESP)
+        </div>
+        <div class="mt-1">
+          <strong>Contributors:</strong> Maísa Braga Aguiar, MD (UNIFESP); Lia Alexandre Botelho de Paula, MD (UNIFESP); Ana Beatriz Galhardi Di Tommaso, MD, MSc (UNIFESP); Eduardo Canteiro Cruz, MD (UNIFESP)
+        </div>
+      </div>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="bg-white rounded-lg shadow p-5 border border-gray-100">
+        <h2 class="text-base md:text-lg font-bold text-custom-blue">Lung Cancer Screener</h2>
+        <div class="mt-4 flex items-center space-x-3">
+          <a href="https://diggunifesp.github.io/75lungcs-calculator/" class="btn-custom rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
+          <button type="button" class="btn-disabled rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center" aria-disabled="true" title="Português (em breve)">Português</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-5 border border-gray-100">
+        <h2 class="text-base md:text-lg font-bold text-blue-700">Breast, Colorectal and Prostate Cancer Screener</h2>
+        <div class="mt-4 flex items-center space-x-3">
+<a href="https://diggunifesp.github.io/75cs-calculator" class="bg-blue-700 hover:bg-blue-800 text-white rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
+          <button type="button" class="btn-disabled rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center" aria-disabled="true" title="Português (em breve)">Português</button>
+        </div>
+      </div>
+
+    </section>
+
+</section>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-center text-gray-400 text-xs">
+     All rights reserved. © 2025 Discipline of Geriatrics and Gerontology — EPM/UNIFESP
+    </footer>
+
+  </div>
+</main>
+</body>
+</html>
