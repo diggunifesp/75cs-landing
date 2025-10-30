@@ -26,6 +26,11 @@
     html { font-size: 18px; }            /* ~+12.5% on md+ */
   }
 </style>
+  
+<style>
+  /* Força o preto mesmo se houver regras antigas com !important */
+  #landing-title { color: #000 !important; }
+</style>
 
 </head>
 
@@ -33,7 +38,9 @@
 <main id="main">
   <div class="max-w-6xl mx-auto px-4 py-6">
     <header class="mb-6 text-center">
-      <h1 class="text-2xl font-bold text-center uppercase text-gray-900">75+ Cancer Screener (75+CS)</h1>
+      <h1 id="landing-title" class="text-2xl font-bold text-center uppercase">
+  75+ Cancer Screener (75+CS)
+</h1>
 
       <div class="mt-1 text-center text-gray-500 text-xs md:text-sm leading-relaxed">
         <div class="mt-1">
