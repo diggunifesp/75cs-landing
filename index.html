@@ -191,6 +191,34 @@ body.app-standalone details.app-collapsible .app-muted {
   }
 </style>
 
+<style id="authors-summary-only-in-app">
+  /* Default: behave like desktop (no "Authors & Contributors" line) */
+  #authors-collab-details > summary { 
+    display: none !important; 
+  }
+  /* Ensure content is visible even if details isn't open */
+  #authors-collab-details > div { 
+    display: block !important; 
+  }
+
+  /* Only in installed app: show summary and allow collapse */
+  @media (display-mode: standalone) {
+    #authors-collab-details > summary { 
+      display: block !important; 
+    }
+    /* In app, content should follow details state */
+    #authors-collab-details:not([open]) > div { 
+      display: none !important; 
+    }
+  }
+  body.app-standalone #authors-collab-details > summary { 
+    display: block !important; 
+  }
+  body.app-standalone #authors-collab-details:not([open]) > div { 
+    display: none !important; 
+  }
+</style>
+
 
 </head>
 
