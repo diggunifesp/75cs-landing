@@ -159,6 +159,39 @@ body.app-standalone details.app-collapsible .app-muted {
   }
 </style>
 
+<style id="authors-visual-match-75cs">
+  /* Match visual style of 75cs calculator */
+  #authors-collab-details > div {
+    text-align: center;
+  }
+
+  #authors-collab-details strong {
+    font-weight: 600;
+  }
+
+  #authors-collab-details,
+  #authors-collab-details .app-muted {
+    color: #6b7280; /* Tailwind text-gray-500 */
+  }
+
+  /* Title (summary) in app: subtle, not black */
+  body.app-standalone #authors-collab-details > summary {
+    color: #374151; /* Tailwind text-gray-700 */
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Desktop: pure academic look, no box, same as 75cs */
+  @media (min-width: 900px) {
+    #authors-collab-details,
+    #authors-collab-details * {
+      color: #6b7280 !important; /* text-gray-500 */
+      text-align: center;
+    }
+  }
+</style>
+
+
 </head>
 
 <body class="bg-gray-50 min-h-screen text-gray-800">
