@@ -105,10 +105,17 @@
   75+ Cancer Screener (75+CS)
 </h1>
 
-      <div class="mt-1 text-center text-gray-500 text-xs md:text-sm leading-relaxed">
+      <details id="authors-collab-details" open class="mt-3 text-left mx-auto max-w-4xl">
+  <summary class="cursor-pointer text-sm font-semibold text-custom-blue select-none text-center">
+    Authors & Contributors
+  </summary>
+  <div class="mt-2">
+<div class="mt-1 text-center text-gray-500 text-xs md:text-sm leading-relaxed">
         <div class="mt-1">
           <strong>Discipline of Geriatrics and Gerontology, Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.</strong>
         </div>
+  </div>
+</details>
         <div class="mt-1">
           <strong>Authors:</strong> Marianne Wolff Rezende Teixeira, MD (UNIFESP); Matheus de Oliveira Barros, MD (UNIFESP); Luciano Pereira Soares, PhD (Insper); Adriana Bruscato Bortoluzzo, PhD (Insper); Maysa Seabra Cendoroglo, MD, PhD (UNIFESP); Gisele Wally Braga Colleoni, MD, PhD (UNIFESP)
         </div>
@@ -192,6 +199,18 @@
       });
 
       setTimeout(function(){ el.style.display = 'block'; }, 800);
+    }
+  } catch(e) {}
+})();
+</script>
+<script id="authors-details-auto">
+(function(){
+  try {
+    var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                       (typeof navigator !== 'undefined' && navigator.standalone === true);
+    if (isStandalone) {
+      var d = document.getElementById('authors-collab-details');
+      if (d) d.removeAttribute('open');
     }
   } catch(e) {}
 })();
