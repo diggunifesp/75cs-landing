@@ -32,6 +32,66 @@
   #landing-title { color: #000 !important; }
 </style>
 
+<!-- PWA / App -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#ffffff">
+
+<!-- iOS: enable standalone and set status bar style -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="75+ CS">
+
+<!-- iOS icon (best: apple-touch-icon.png at same folder) -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Favicons (optional) -->
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<style id="app-mode-styles">
+  /* When opened as installed app */
+  @media (display-mode: standalone) {
+    header .text-gray-500 { display: none !important; } /* hide long institutional block */
+    header { margin-bottom: 14px !important; }
+    #landing-title { font-size: 22px !important; }
+    .shadow { box-shadow: none !important; }
+    .rounded-lg { border-radius: 14px !important; }
+  }
+
+  body.app-standalone header .text-gray-500 { display: none !important; }
+  body.app-standalone header { margin-bottom: 14px !important; }
+  body.app-standalone #landing-title { font-size: 22px !important; }
+  body.app-standalone .shadow { box-shadow: none !important; }
+
+  /* Discreet install prompt for mobile browser only */
+  .install-prompt {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 9998;
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    padding: 10px 12px;
+    font: 13px system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color: rgba(0,0,0,0.75);
+    display: none;
+  }
+  .install-prompt .row { display:flex; align-items:center; gap:10px; }
+  .install-prompt .txt { flex: 1; line-height: 1.25; }
+  .install-prompt .btn {
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(0,0,0,0.04);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .install-prompt .btn.primary {
+    background: rgba(37, 99, 235, 0.10);
+    border-color: rgba(37, 99, 235, 0.25);
+  }
+  .install-prompt .hint { margin-top: 8px; font-size: 12px; color: rgba(0,0,0,0.55); display:none; }
+  .install-prompt .hint b { font-weight: 700; }
+  @media (min-width: 900px) { .install-prompt { display:none !important; } }
+</style>
 </head>
 
 <body class="bg-gray-50 min-h-screen text-gray-800">
@@ -75,8 +135,6 @@
 
     </section>
 
-</section>
-
     <!-- Footer -->
     <footer class="mt-10 text-center text-gray-400 text-xs">
      All rights reserved. © 2025 Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.
@@ -84,5 +142,56 @@
 
   </div>
 </main>
+<script id="landing-app-js">
+(function(){
+  // App-mode detection (iOS + display-mode)
+  try {
+    var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                       (typeof navigator !== 'undefined' && navigator.standalone === true);
+    if (isStandalone && document.body && document.body.classList) document.body.classList.add('app-standalone');
+  } catch(e) {}
+
+  // Install prompt (only in browser, mobile-ish, dismissable)
+  try {
+    var DISMISS_KEY = "install_prompt_dismissed_landing_v1";
+    function isStandaloneNow() {
+      return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+             (typeof navigator !== 'undefined' && navigator.standalone === true);
+    }
+    function isMobileish() {
+      return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+    }
+    if (!isStandaloneNow() && isMobileish() && !localStorage.getItem(DISMISS_KEY)) {
+      var el = document.createElement('div');
+      el.className = 'install-prompt no-print';
+      el.innerHTML =
+        '<div class="row">' +
+          '<div class="txt">Tip: install this as an app for a cleaner, less cluttered experience.</div>' +
+          '<button class="btn primary" type="button" id="ip-how">How</button>' +
+          '<button class="btn" type="button" id="ip-x">✕</button>' +
+        '</div>' +
+        '<div class="hint" id="ip-hint"></div>';
+      document.body.appendChild(el);
+
+      var hint = el.querySelector('#ip-hint');
+      var ua = navigator.userAgent || '';
+      el.querySelector('#ip-how').addEventListener('click', function(){
+        var isIOS = /iPhone|iPad|iPod/i.test(ua);
+        var isSafari = isIOS && /Safari/i.test(ua) && !/CriOS|FxiOS/i.test(ua);
+        hint.innerHTML = isSafari
+          ? 'On iPhone: tap <b>Share</b> → <b>Add to Home Screen</b>, then open from the icon.'
+          : 'On Android: menu (⋮) → <b>Add to Home screen</b> / <b>Install app</b>, then open from the icon.';
+        hint.style.display = 'block';
+      });
+      el.querySelector('#ip-x').addEventListener('click', function(){
+        localStorage.setItem(DISMISS_KEY, '1');
+        el.remove();
+      });
+
+      setTimeout(function(){ el.style.display = 'block'; }, 800);
+    }
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
