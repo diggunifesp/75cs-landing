@@ -50,14 +50,12 @@
 <style id="app-mode-styles">
   /* When opened as installed app */
   @media (display-mode: standalone) {
-    header .text-gray-500 { display: none !important; } /* hide long institutional block */
     header { margin-bottom: 14px !important; }
     #landing-title { font-size: 22px !important; }
     .shadow { box-shadow: none !important; }
     .rounded-lg { border-radius: 14px !important; }
   }
 
-  body.app-standalone header .text-gray-500 { display: none !important; }
   body.app-standalone header { margin-bottom: 14px !important; }
   body.app-standalone #landing-title { font-size: 22px !important; }
   body.app-standalone .shadow { box-shadow: none !important; }
@@ -91,6 +89,11 @@
   .install-prompt .hint { margin-top: 8px; font-size: 12px; color: rgba(0,0,0,0.55); display:none; }
   .install-prompt .hint b { font-weight: 700; }
   @media (min-width: 900px) { .install-prompt { display:none !important; } }
+</style>
+<style id="authors-collab-details-style">
+  #authors-collab-details summary { list-style: none; }
+  #authors-collab-details summary::-webkit-details-marker { display:none; }
+  #authors-collab-details[open] > summary { margin-bottom: 6px; }
 </style>
 </head>
 
