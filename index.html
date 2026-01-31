@@ -219,6 +219,30 @@ body.app-standalone details.app-collapsible .app-muted {
   }
 </style>
 
+<style id="authors-app-unify-font">
+  /* App (installed): unify font size for the whole expanded block */
+  @media (display-mode: standalone) {
+    #authors-collab-details .app-muted {
+      font-size: 12px !important;
+      line-height: 1.35 !important;
+    }
+    #authors-collab-details .app-muted strong {
+      font-size: inherit !important;   /* <- important: strong won't change size */
+      font-weight: 600 !important;
+    }
+  }
+
+  /* iOS standalone fallback (your JS adds body.app-standalone) */
+  body.app-standalone #authors-collab-details .app-muted {
+    font-size: 12px !important;
+    line-height: 1.35 !important;
+  }
+  body.app-standalone #authors-collab-details .app-muted strong {
+    font-size: inherit !important;
+    font-weight: 600 !important;
+  }
+</style>
+
 
 </head>
 
