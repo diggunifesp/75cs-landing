@@ -137,6 +137,28 @@ body.app-standalone details.app-collapsible .app-muted {
   #authors-collab-details summary::-webkit-details-marker { display:none; }
   #authors-collab-details[open] > summary { margin-bottom: 6px; }
 </style>
+
+<style id="authors-desktop-override">
+  /* Desktop: show authors inline (not collapsible) */
+  @media (min-width: 900px) {
+    #authors-collab-details {
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      max-width: 100% !important;
+    }
+    #authors-collab-details > summary {
+      display: none !important;
+    }
+    /* Force content visible even if <details> is closed */
+    #authors-collab-details > div,
+    #authors-collab-details:not([open]) > div {
+      display: block !important;
+    }
+  }
+</style>
+
 </head>
 
 <body class="bg-gray-50 min-h-screen text-gray-800">
