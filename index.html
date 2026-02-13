@@ -38,6 +38,13 @@ body.app-standalone details.app-collapsible .app-muted {
   .btn-custom:hover { background-color: #016b76 !important; }
   .btn-disabled { background-color: #e5e7eb !important; color: #6b7280 !important; cursor: not-allowed; }
   .progress-bar { background-color: #018392 !important; }
+
+  /* Portuguese (lighter) buttons */
+  .btn-blue-pt { background-color: #3b82f6 !important; color: white !important; }      /* blue-500 */
+  .btn-blue-pt:hover { background-color: #2563eb !important; }                         /* blue-600 */
+  .btn-teal-pt { background-color: #0aa8b9 !important; color: white !important; }      /* lighter teal */
+  .btn-teal-pt:hover { background-color: #0891a0 !important; }
+
 </style>
 
 <style>
@@ -256,7 +263,7 @@ body.app-standalone details.app-collapsible .app-muted {
         <h2 class="text-base md:text-lg font-bold text-blue-700">Breast, Colorectal and Prostate Cancer Screener</h2>
         <div class="mt-4 flex items-center space-x-3">
 <a href="https://diggunifesp.github.io/75cs-calculator" class="bg-blue-700 hover:bg-blue-800 text-white rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
-          <button type="button" class="btn-disabled rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center" aria-disabled="true" title="Português (em breve)">Other Languages</button>
+          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75CS" class="btn-blue-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
         </div>
       </div>
 
@@ -264,7 +271,7 @@ body.app-standalone details.app-collapsible .app-muted {
         <h2 class="text-base md:text-lg font-bold text-custom-blue">Lung Cancer Screener</h2>
         <div class="mt-4 flex items-center space-x-3">
           <a href="https://diggunifesp.github.io/75lungcs-calculator/" class="btn-custom rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
-          <button type="button" class="btn-disabled rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center" aria-disabled="true" title="Português (em breve)">Other Languages</button>
+          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75LUNGCS" class="btn-teal-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
         </div>
       </div>
 
@@ -326,6 +333,24 @@ body.app-standalone details.app-collapsible .app-muted {
       setTimeout(function(){ el.style.display = 'block'; }, 800);
     }
   } catch(e) {}
+
+  // Other Languages -> Portuguese (URLs to be defined)
+  try {
+    document.querySelectorAll('a[data-pt-url]').forEach(function(a){
+      a.addEventListener('click', function(ev){
+        var url = a.getAttribute('data-pt-url') || '';
+        // If URL is not yet configured, prevent navigation and show a short message.
+        if (!url || url.indexOf('PUT_PORTUGUESE_URL_HERE') === 0) {
+          ev.preventDefault();
+          alert('Português em breve. (Link ainda não configurado neste arquivo.)');
+          return;
+        }
+        // Navigate to the configured Portuguese URL
+        a.setAttribute('href', url);
+      });
+    });
+  } catch(e) {}
+
 })();
 </script>
 <script id="authors-details-auto">
