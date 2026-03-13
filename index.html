@@ -324,13 +324,11 @@ if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY))
   var hint = el.querySelector('#ip-hint');
   var ua = navigator.userAgent || '';
   el.querySelector('#ip-how').addEventListener('click', function(){
-    var isIOS = /iPhone|iPad|iPod/i.test(ua);
-    var isSafari = isIOS && /Safari/i.test(ua) && !/CriOS|FxiOS/i.test(ua);
-    hint.innerHTML = isSafari
-      ? 'On iPhone: tap <b>Share</b> → <b>Add to Home Screen</b>, then open from the icon.'
-      : 'On Android: open the browser menu and tap <b>Add to Home Screen</b> or <b>Install app</b>.';
-    hint.style.display = 'block';
-  });
+  hint.innerHTML =
+    '<b>On iPhone/iPad:</b> tap <b>Share</b> → <b>Add to Home Screen</b>.<br>' +
+    '<b>On Android:</b> open the browser menu and tap <b>Add to Home Screen</b> or <b>Install app</b>.';
+  hint.style.display = 'block';
+});
   el.querySelector('#ip-x').addEventListener('click', function(){
   sessionStorage.setItem(DISMISS_KEY, '1');
   el.remove();
