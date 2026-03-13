@@ -25,6 +25,331 @@ body.app-standalone details.app-collapsible > summary {
 body.app-standalone details.app-collapsible > summary::-webkit-details-marker { display: none; }
 body.app-standalone details.app-collapsible .app-muted {
   color: rgba(0,0,0,0.55);
+  font-size: 0.875rem;
+  line-height: 1.35;
+  margin-top: 8px;
+}
+</style>
+</style>
+
+<style>
+  .text-custom-blue { color: #018392 !important; }
+  .btn-custom { background-color: #018392 !important; color: white !important; }
+  .btn-custom:hover { background-color: #016b76 !important; }
+  .btn-disabled { background-color: #e5e7eb !important; color: #6b7280 !important; cursor: not-allowed; }
+  .progress-bar { background-color: #018392 !important; }
+
+  /* Portuguese (lighter) buttons */
+  .btn-blue-pt { background-color: #3b82f6 !important; color: white !important; }      /* blue-500 */
+  .btn-blue-pt:hover { background-color: #2563eb !important; }                         /* blue-600 */
+  .btn-teal-pt { background-color: #0aa8b9 !important; color: white !important; }      /* lighter teal */
+  .btn-teal-pt:hover { background-color: #0891a0 !important; }
+
+</style>
+
+<style>
+  /* Scale root font-size to visually match calculators */
+  html { font-size: 17px; }              /* ~+6% on small screens */
+  @media (min-width: 768px) {
+    html { font-size: 18px; }            /* ~+12.5% on md+ */
+  }
+</style>
+  
+<style>
+  /* Força o preto mesmo se houver regras antigas com !important */
+  #landing-title { 
+  color: #000 !important; 
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+</style>
+
+<!-- PWA / App -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#ffffff">
+
+<!-- iOS: enable standalone and set status bar style -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="75+ CS">
+
+<!-- iOS icon (best: apple-touch-icon.png at same folder) -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Favicons (optional) -->
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<style id="app-mode-styles">
+  /* When opened as installed app */
+  @media (display-mode: standalone) {
+    header { margin-bottom: 14px !important; 
+  /* Boxed collapsible (like calculator) */
+  details.app-collapsible {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.7);
+  }
+  details.app-collapsible > summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: rgba(0,0,0,0.85); /* more black */
+    list-style: none;
+  }
+  details.app-collapsible > summary::-webkit-details-marker { display: none; }
+  details.app-collapsible .app-muted {
+    color: rgba(0,0,0,0.55);
+    font-size: 12px;
+    line-height: 1.35;
+    margin-top: 8px;
+  }
+}
+    #landing-title { font-size: 22px !important; }
+    .shadow { box-shadow: none !important; }
+    .rounded-lg { border-radius: 14px !important; }
+  }
+
+  body.app-standalone header { margin-bottom: 14px !important; }
+  body.app-standalone #landing-title { font-size: 22px !important; }
+  body.app-standalone .shadow { box-shadow: none !important; }
+
+  /* Discreet install prompt for mobile browser only */
+  .install-prompt {
+    position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 9998;
+    border: 1px solid rgba(0,0,0,0.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    padding: 10px 12px;
+    font: 13px system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    color: rgba(0,0,0,0.75);
+    display: none;
+  }
+  .install-prompt .row { display:flex; align-items:center; gap:10px; }
+  .install-prompt .txt { flex: 1; line-height: 1.25; }
+  .install-prompt .btn {
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(0,0,0,0.04);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .install-prompt .btn.primary {
+    background: rgba(37, 99, 235, 0.10);
+    border-color: rgba(37, 99, 235, 0.25);
+  }
+  .install-prompt .hint { margin-top: 8px; font-size: 12px; color: rgba(0,0,0,0.55); display:none; }
+  .install-prompt .hint b { font-weight: 700; }
+  @media (min-width: 900px) { .install-prompt { display:none !important; } }
+</style>
+<style id="authors-collab-details-style">
+  #authors-collab-details summary { list-style: none; }
+  #authors-collab-details summary::-webkit-details-marker { display:none; }
+  #authors-collab-details[open] > summary { margin-bottom: 6px; }
+</style>
+
+<style id="authors-desktop-override">
+  /* Desktop: show authors inline (not collapsible) */
+  @media (min-width: 900px) {
+    #authors-collab-details {
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      max-width: 100% !important;
+    }
+    #authors-collab-details > summary {
+      display: none !important;
+    }
+    /* Force content visible even if <details> is closed */
+    #authors-collab-details > div,
+    #authors-collab-details:not([open]) > div {
+      display: block !important;
+    }
+  }
+</style>
+
+<style id="authors-visual-match-75cs">
+  /* Match visual style of 75cs calculator */
+  #authors-collab-details > div {
+    text-align: center;
+  }
+
+  #authors-collab-details strong {
+    font-weight: 600;
+  }
+
+  #authors-collab-details,
+  #authors-collab-details .app-muted {
+    color: #6b7280; /* Tailwind text-gray-500 */
+  }
+
+  /* Title (summary) in app: subtle, not black */
+  body.app-standalone #authors-collab-details > summary {
+    color: #374151; /* Tailwind text-gray-700 */
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Desktop: pure academic look, no box, same as 75cs */
+  @media (min-width: 900px) {
+    #authors-collab-details,
+    #authors-collab-details * {
+      color: #6b7280 !important; /* text-gray-500 */
+      text-align: center;
+    }
+  }
+</style>
+
+<style id="authors-summary-only-in-app">
+  /* Default: behave like desktop (no "Authors & Contributors" line) */
+  #authors-collab-details > summary { 
+    display: none !important; 
+  }
+  /* Ensure content is visible even if details isn't open */
+  #authors-collab-details > div { 
+    display: block !important; 
+  }
+
+  /* Only in installed app: show summary and allow collapse */
+  @media (display-mode: standalone) {
+    #authors-collab-details > summary { 
+      display: block !important; 
+    }
+    /* In app, content should follow details state */
+    #authors-collab-details:not([open]) > div { 
+      display: none !important; 
+    }
+  }
+  body.app-standalone #authors-collab-details > summary { 
+    display: block !important; 
+  }
+  body.app-standalone #authors-collab-details:not([open]) > div { 
+    display: none !important; 
+  }
+</style>
+
+</head>
+
+<body class="bg-gray-50 min-h-screen text-gray-800">
+<main id="main">
+  <div class="max-w-6xl mx-auto px-4 py-6">
+    <header class="mb-6 text-center">
+      <h1 id="landing-title" class="text-2xl font-bold text-center uppercase">
+  75+ Cancer Screener (75+CS)
+</h1>
+	
+      <details id="authors-collab-details" open class="app-collapsible mt-4 text-left mx-auto max-w-3xl">
+  <summary class="cursor-pointer text-sm font-semibold text-black select-none text-center">
+    Authors & Contributors
+  </summary>
+  <div class="mt-2 text-sm md:text-sm">
+  <div class="mt-1 text-center text-gray-500 text-sm leading-relaxed app-muted">
+    <strong>
+      Discipline of Geriatrics and Gerontology, Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.
+    </strong>
+  </div>
+
+  <div class="mt-1">
+    <strong>Authors:</strong> Marianne Wolff Rezende Teixeira, MD (UNIFESP); Matheus de Oliveira Barros, MD (UNIFESP); Luciano Pereira Soares, PhD (Insper); Adriana Bruscato Bortoluzzo, PhD (Insper); Maysa Seabra Cendoroglo, MD, PhD (UNIFESP); Gisele Wally Braga Colleoni, MD, PhD (UNIFESP)
+  </div>
+
+  <div class="mt-1">
+    <strong>Contributors:</strong> Maísa Braga Aguiar, MD (UNIFESP); Lia Alexandre Botelho de Paula, MD (UNIFESP); Ana Beatriz Galhardi Di Tommaso, MD, MSc (UNIFESP); Eduardo Canteiro Cruz, MD (UNIFESP)
+  </div>
+</div>
+</details>
+
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+      <div class="bg-white rounded-lg shadow p-5 border border-gray-100">
+        <h2 class="text-base md:text-lg font-bold text-blue-700">Breast, Colorectal and Prostate Cancer Screener</h2>
+        <div class="mt-4 flex items-center space-x-3">
+<a href="https://diggunifesp.github.io/75cs-calculator" class="bg-blue-700 hover:bg-blue-800 text-white rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
+          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75CS" class="btn-blue-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-5 border border-gray-100">
+        <h2 class="text-base md:text-lg font-bold text-custom-blue">Lung Cancer Screener</h2>
+        <div class="mt-4 flex items-center space-x-3">
+          <a href="https://diggunifesp.github.io/75lungcs-calculator/" class="btn-custom rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
+          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75LUNGCS" class="btn-teal-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-10 text-center text-gray-400 text-xs">
+     All rights reserved. © 2025 Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.
+    </footer>
+
+  </div>
+</main>
+<script id="landing-app-js">
+(function(){
+  // App-mode detection (iOS + display-mode)
+  try {
+    var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                       (typeof navigator !== 'undefined' && navigator.standalone === true);
+    if (isStandalone && document.body && document.body.classList) document.body.classList.add('app-standalone');
+  } catch(e) {}
+
+  // Install prompt (only in browser, mobile-ish, dismissable)
+  try {
+    var DISMISS_KEY = "install_prompt_dismissed_landing_v2";
+function isStandaloneNow() {
+  return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+         (typeof navigator !== 'undefined' && navigator.standalone === true);
+}
+function isMobileish() {
+  return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+}
+if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY)) {
+  var el = document.createElement('div');
+  el.className = 'install-prompt no-print';
+  el.innerHTML =
+    '<div class="row">' +
+      '<div class="txt">For a cleaner experience, install this site as an app on your device.</div>' +
+      '<button class="btn primary" type="button" id="ip-how">How</button>' +
+      '<button class="btn" type="button" id="ip-x">✕</button>' +
+    '</div>' +
+    '<div class="hint" id="ip-hint"></div>';
+  document.body.appendChild(el);
+
+  var hint = el.querySelector('#ip-hint');
+  var ua = navigator.userAgent || '';
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>75+ Cancer Screener — Landing</title>
+
+<!-- Tailwind v2.2.19 and Alpine.js -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.1/cdn.min.js"></script>
+
+<style>[x-cloak]{display:none!important} @media print{button, .no-print{display:none!important}}<style id="app-mode-styles-extra">
+body.app-standalone details.app-collapsible {
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: rgba(255,255,255,0.7);
+}
+body.app-standalone details.app-collapsible > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: rgba(0,0,0,0.85);
+  list-style: none;
+}
+body.app-standalone details.app-collapsible > summary::-webkit-details-marker { display: none; }
+body.app-standalone details.app-collapsible .app-muted {
+  color: rgba(0,0,0,0.55);
   font-size: 12px;
   line-height: 1.35;
   margin-top: 8px;
@@ -329,6 +654,48 @@ if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY))
     '<b>On Android:</b> open the browser menu and tap <b>Add to Home Screen</b> or <b>Install app</b>.';
   hint.style.display = 'block';
 });
+  el.querySelector('#ip-x').addEventListener('click', function(){
+  sessionStorage.setItem(DISMISS_KEY, '1');
+  el.remove();
+});
+
+  setTimeout(function(){ el.style.display = 'block'; }, 800);
+}
+  } catch(e) {}
+
+  // Other Languages -> Portuguese (URLs to be defined)
+  try {
+    document.querySelectorAll('a[data-pt-url]').forEach(function(a){
+      a.addEventListener('click', function(ev){
+        var url = a.getAttribute('data-pt-url') || '';
+        // If URL is not yet configured, prevent navigation and show a short message.
+        if (!url || url.indexOf('PUT_PORTUGUESE_URL_HERE') === 0) {
+          ev.preventDefault();
+          alert('Versão em português em breve. Caso necessário, utilize a tradução automática do navegador.');
+          return;
+        }
+        // Navigate to the configured Portuguese URL
+        a.setAttribute('href', url);
+      });
+    });
+  } catch(e) {}
+
+})();
+</script>
+<script id="authors-details-auto">
+(function(){
+  try {
+    var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+                       (typeof navigator !== 'undefined' && navigator.standalone === true);
+    if (isStandalone) {
+      var d = document.getElementById('authors-collab-details');
+      if (d) d.removeAttribute('open');
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
   el.querySelector('#ip-x').addEventListener('click', function(){
   sessionStorage.setItem(DISMISS_KEY, '1');
   el.remove();
