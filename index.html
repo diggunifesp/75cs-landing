@@ -301,43 +301,43 @@ body.app-standalone details.app-collapsible .app-muted {
 
   // Install prompt (only in browser, mobile-ish, dismissable)
   try {
-    var DISMISS_KEY = "install_prompt_dismissed_landing_v1";
-    function isStandaloneNow() {
-      return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
-             (typeof navigator !== 'undefined' && navigator.standalone === true);
-    }
-    function isMobileish() {
-      return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
-    }
-    if (!isStandaloneNow() && isMobileish() && !localStorage.getItem(DISMISS_KEY)) {
-      var el = document.createElement('div');
-      el.className = 'install-prompt no-print';
-      el.innerHTML =
-        '<div class="row">' +
-          '<div class="txt">Tip: install this as an app for a cleaner, less cluttered experience.</div>' +
-          '<button class="btn primary" type="button" id="ip-how">How</button>' +
-          '<button class="btn" type="button" id="ip-x">✕</button>' +
-        '</div>' +
-        '<div class="hint" id="ip-hint"></div>';
-      document.body.appendChild(el);
+    var DISMISS_KEY = "install_prompt_dismissed_landing_v2";
+function isStandaloneNow() {
+  return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+         (typeof navigator !== 'undefined' && navigator.standalone === true);
+}
+function isMobileish() {
+  return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+}
+if (!isStandaloneNow() && isMobileish() && !localStorage.getItem(DISMISS_KEY)) {
+  var el = document.createElement('div');
+  el.className = 'install-prompt no-print';
+  el.innerHTML =
+    '<div class="row">' +
+      '<div class="txt">For a cleaner experience, install this site as an app on your device.</div>' +
+      '<button class="btn primary" type="button" id="ip-how">How</button>' +
+      '<button class="btn" type="button" id="ip-x">✕</button>' +
+    '</div>' +
+    '<div class="hint" id="ip-hint"></div>';
+  document.body.appendChild(el);
 
-      var hint = el.querySelector('#ip-hint');
-      var ua = navigator.userAgent || '';
-      el.querySelector('#ip-how').addEventListener('click', function(){
-        var isIOS = /iPhone|iPad|iPod/i.test(ua);
-        var isSafari = isIOS && /Safari/i.test(ua) && !/CriOS|FxiOS/i.test(ua);
-        hint.innerHTML = isSafari
-          ? 'On iPhone: tap <b>Share</b> → <b>Add to Home Screen</b>, then open from the icon.'
-          : 'On Android: menu (⋮) → <b>Add to Home screen</b> / <b>Install app</b>, then open from the icon.';
-        hint.style.display = 'block';
-      });
-      el.querySelector('#ip-x').addEventListener('click', function(){
-        localStorage.setItem(DISMISS_KEY, '1');
-        el.remove();
-      });
+  var hint = el.querySelector('#ip-hint');
+  var ua = navigator.userAgent || '';
+  el.querySelector('#ip-how').addEventListener('click', function(){
+    var isIOS = /iPhone|iPad|iPod/i.test(ua);
+    var isSafari = isIOS && /Safari/i.test(ua) && !/CriOS|FxiOS/i.test(ua);
+    hint.innerHTML = isSafari
+      ? 'On iPhone: tap <b>Share</b> → <b>Add to Home Screen</b>, then open from the icon.'
+      : 'On Android: open the browser menu and tap <b>Add to Home Screen</b> or <b>Install app</b>.';
+    hint.style.display = 'block';
+  });
+  el.querySelector('#ip-x').addEventListener('click', function(){
+    localStorage.setItem(DISMISS_KEY, '1');
+    el.remove();
+  });
 
-      setTimeout(function(){ el.style.display = 'block'; }, 800);
-    }
+  setTimeout(function(){ el.style.display = 'block'; }, 800);
+}
   } catch(e) {}
 
   // Other Languages -> Portuguese (URLs to be defined)
