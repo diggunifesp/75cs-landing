@@ -296,43 +296,71 @@ body.app-standalone details.app-collapsible .app-muted {
   try {
     var isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
                        (typeof navigator !== 'undefined' && navigator.standalone === true);
-    if (isStandalone && document.body && document.body.classList) document.body.classList.add('app-standalone');
+    if (isStandalone && document.body && document.body.classList) {
+      document.body.classList.add('app-standalone');
+    }
   } catch(e) {}
 
-  // Install prompt (only in browser, mobile-ish, dismissable)
+  // Install prompt (only in browser, mobile-ish, dismissable per session)
   try {
     var DISMISS_KEY = "install_prompt_dismissed_landing_v2";
-function isStandaloneNow() {
-  return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
-         (typeof navigator !== 'undefined' && navigator.standalone === true);
-}
-function isMobileish() {
-  return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
-}
-if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY)) {
-  var el = document.createElement('div');
-  el.className = 'install-prompt no-print';
-  el.innerHTML =
-    '<div class="row">' +
-      '<div class="txt">For a cleaner experience, install this site as an app on your device.</div>' +
-      '<button class="btn primary" type="button" id="ip-how">How</button>' +
-      '<button class="btn" type="button" id="ip-x">✕</button>' +
-    '</div>' +
-    '<div class="hint" id="ip-hint"></div>';
-  document.body.appendChild(el);
 
-  var hint = el.querySelector('#ip-hint');
-  var ua = navigator.userAgent || '';
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>75+ Cancer Screener — Landing</title>
+    function isStandaloneNow() {
+      return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) ||
+             (typeof navigator !== 'undefined' && navigator.standalone === true);
+    }
 
-<!-- Tailwind v2.2.19 and Alpine.js -->
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.1/cdn.min.js"></script>
+    function isMobileish() {
+      return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
+    }
+
+    if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY)) {
+      var el = document.createElement('div');
+      el.className = 'install-prompt no-print';
+      el.innerHTML =
+        '<div class="row">' +
+          '<div class="txt">For a cleaner experience, install this site as an app on your device.</div>' +
+          '<button class="btn primary" type="button" id="ip-how">How</button>' +
+          '<button class="btn" type="button" id="ip-x">✕</button>' +
+        '</div>' +
+        '<div class="hint" id="ip-hint"></div>';
+
+      document.body.appendChild(el);
+
+      var hint = el.querySelector('#ip-hint');
+
+      el.querySelector('#ip-how').addEventListener('click', function(){
+        hint.innerHTML =
+          '<b>On iPhone/iPad:</b> tap <b>Share</b> → <b>Add to Home Screen</b>.<br>' +
+          '<b>On Android:</b> open the browser menu and tap <b>Add to Home Screen</b> or <b>Install app</b>.';
+        hint.style.display = 'block';
+      });
+
+      el.querySelector('#ip-x').addEventListener('click', function(){
+        sessionStorage.setItem(DISMISS_KEY, '1');
+        el.remove();
+      });
+
+      setTimeout(function(){ el.style.display = 'block'; }, 800);
+    }
+  } catch(e) {}
+
+  // Other Languages -> Portuguese (URLs to be defined)
+  try {
+    document.querySelectorAll('a[data-pt-url]').forEach(function(a){
+      a.addEventListener('click', function(ev){
+        var url = a.getAttribute('data-pt-url') || '';
+        if (!url || url.indexOf('PUT_PORTUGUESE_URL_HERE') === 0) {
+          ev.preventDefault();
+          alert('Versão em português em breve. Caso necessário, utilize a tradução automática do navegador.');
+          return;
+        }
+        a.setAttribute('href', url);
+      });
+    });
+  } catch(e) {}
+})();
+</script>
 
 <style>[x-cloak]{display:none!important} @media print{button, .no-print{display:none!important}}<style id="app-mode-styles-extra">
 body.app-standalone details.app-collapsible {
