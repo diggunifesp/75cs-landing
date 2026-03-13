@@ -309,7 +309,7 @@ function isStandaloneNow() {
 function isMobileish() {
   return (window.innerWidth <= 820) || ("ontouchstart" in window) || (navigator.maxTouchPoints > 0);
 }
-if (!isStandaloneNow() && isMobileish() && !localStorage.getItem(DISMISS_KEY)) {
+if (!isStandaloneNow() && isMobileish() && !sessionStorage.getItem(DISMISS_KEY)) {
   var el = document.createElement('div');
   el.className = 'install-prompt no-print';
   el.innerHTML =
@@ -332,9 +332,9 @@ if (!isStandaloneNow() && isMobileish() && !localStorage.getItem(DISMISS_KEY)) {
     hint.style.display = 'block';
   });
   el.querySelector('#ip-x').addEventListener('click', function(){
-    localStorage.setItem(DISMISS_KEY, '1');
-    el.remove();
-  });
+  sessionStorage.setItem(DISMISS_KEY, '1');
+  el.remove();
+});
 
   setTimeout(function(){ el.style.display = 'block'; }, 800);
 }
