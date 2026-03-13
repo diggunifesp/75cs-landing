@@ -57,7 +57,11 @@ body.app-standalone details.app-collapsible .app-muted {
   
 <style>
   /* Força o preto mesmo se houver regras antigas com !important */
-  #landing-title { color: #000 !important; }
+  #landing-title { 
+  color: #000 !important; 
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
 </style>
 
 <!-- PWA / App -->
@@ -235,24 +239,26 @@ body.app-standalone details.app-collapsible .app-muted {
       <h1 id="landing-title" class="text-2xl font-bold text-center uppercase">
   75+ Cancer Screener (75+CS)
 </h1>
-
-      <details id="authors-collab-details" open class="app-collapsible mt-3 text-left mx-auto max-w-4xl" class="app-collapsible mt-3 text-left mx-auto max-w-4xl">
+	
+      <details id="authors-collab-details" open class="app-collapsible mt-4 text-left mx-auto max-w-3xl">
   <summary class="cursor-pointer text-sm font-semibold text-black select-none text-center">
     Authors & Contributors
   </summary>
-  <div class="mt-2">
-<div class="mt-1 text-center text-gray-500 text-xs md:text-sm leading-relaxed app-muted">
-        <div class="mt-1">
-          <strong>Discipline of Geriatrics and Gerontology, Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.</strong>
-        </div>
+  <div class="mt-2 text-sm md:text-sm">
+  <div class="mt-1 text-center text-gray-500 text-sm leading-relaxed app-muted">
+    <strong>
+      Discipline of Geriatrics and Gerontology, Department of Medicine. Paulista School of Medicine (EPM), Federal University of São Paulo (UNIFESP). São Paulo, Brazil.
+    </strong>
   </div>
-            <div class="mt-1">
-          <strong>Authors:</strong> Marianne Wolff Rezende Teixeira, MD (UNIFESP); Matheus de Oliveira Barros, MD (UNIFESP); Luciano Pereira Soares, PhD (Insper); Adriana Bruscato Bortoluzzo, PhD (Insper); Maysa Seabra Cendoroglo, MD, PhD (UNIFESP); Gisele Wally Braga Colleoni, MD, PhD (UNIFESP)
-        </div>
-        <div class="mt-1">
-          <strong>Contributors:</strong> Maísa Braga Aguiar, MD (UNIFESP); Lia Alexandre Botelho de Paula, MD (UNIFESP); Ana Beatriz Galhardi Di Tommaso, MD, MSc (UNIFESP); Eduardo Canteiro Cruz, MD (UNIFESP)
-        </div>
-      </div>
+
+  <div class="mt-1">
+    <strong>Authors:</strong> Marianne Wolff Rezende Teixeira, MD (UNIFESP); Matheus de Oliveira Barros, MD (UNIFESP); Luciano Pereira Soares, PhD (Insper); Adriana Bruscato Bortoluzzo, PhD (Insper); Maysa Seabra Cendoroglo, MD, PhD (UNIFESP); Gisele Wally Braga Colleoni, MD, PhD (UNIFESP)
+  </div>
+
+  <div class="mt-1">
+    <strong>Contributors:</strong> Maísa Braga Aguiar, MD (UNIFESP); Lia Alexandre Botelho de Paula, MD (UNIFESP); Ana Beatriz Galhardi Di Tommaso, MD, MSc (UNIFESP); Eduardo Canteiro Cruz, MD (UNIFESP)
+  </div>
+</div>
 </details>
 
     </header>
@@ -342,7 +348,7 @@ body.app-standalone details.app-collapsible .app-muted {
         // If URL is not yet configured, prevent navigation and show a short message.
         if (!url || url.indexOf('PUT_PORTUGUESE_URL_HERE') === 0) {
           ev.preventDefault();
-          alert('Português em breve. (Link ainda não configurado neste arquivo.)');
+          alert('Versão em português em breve. Caso necessário, utilize a tradução automática do navegador.');
           return;
         }
         // Navigate to the configured Portuguese URL
