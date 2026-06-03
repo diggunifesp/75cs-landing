@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>75+ Cancer Screener — Landing</title>
+<title>75+ Cancer Screener — Página inicial</title>
 
 <!-- Tailwind v2.2.19 and Alpine.js -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
@@ -274,7 +274,7 @@ body.app-standalone details.app-collapsible .app-muted {
         <h2 class="text-base md:text-lg font-bold text-blue-700">Rastreamento de Câncer de Mama, Colorretal e Próstata</h2>
         <div class="mt-4 flex items-center space-x-3">
 <a href="https://diggunifesp.github.io/75cs-calculator" class="bg-blue-700 hover:bg-blue-800 text-white rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
-          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75CS" class="btn-blue-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
+          <a href="https://diggunifesp.github.io/75cs-calculator/pt/" class="btn-blue-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
         </div>
       </div>
 
@@ -282,7 +282,7 @@ body.app-standalone details.app-collapsible .app-muted {
         <h2 class="text-base md:text-lg font-bold text-custom-blue">Rastreamento de Câncer de Pulmão</h2>
         <div class="mt-4 flex items-center space-x-3">
           <a href="https://diggunifesp.github.io/75lungcs-calculator/" class="btn-custom rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">English</a>
-          <a href="#" data-pt-url="PUT_PORTUGUESE_URL_HERE_FOR_75LUNGCS" class="btn-teal-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
+          <a href="https://diggunifesp.github.io/75lungcs-calculator/pt/" class="btn-teal-pt rounded px-4 py-2 text-sm md:text-base inline-flex items-center justify-center">Português</a>
         </div>
       </div>
 
@@ -324,8 +324,8 @@ body.app-standalone details.app-collapsible .app-muted {
       el.className = 'install-prompt no-print';
       el.innerHTML =
         '<div class="row">' +
-          '<div class="txt">For a cleaner experience, install this site as an app on your device.</div>' +
-          '<button class="btn primary" type="button" id="ip-how">How</button>' +
+          '<div class="txt">Para uma experiência mais limpa, instale este site como aplicativo no seu dispositivo.</div>' +
+          '<button class="btn primary" type="button" id="ip-how">Como</button>' +
           '<button class="btn" type="button" id="ip-x">✕</button>' +
         '</div>' +
         '<div class="hint" id="ip-hint"></div>';
@@ -350,20 +350,6 @@ body.app-standalone details.app-collapsible .app-muted {
     }
   } catch(e) {}
 
-  // Other Languages -> Portuguese (URLs to be defined)
-  try {
-    document.querySelectorAll('a[data-pt-url]').forEach(function(a){
-      a.addEventListener('click', function(ev){
-        var url = a.getAttribute('data-pt-url') || '';
-        if (!url || url.indexOf('PUT_PORTUGUESE_URL_HERE') === 0) {
-          ev.preventDefault();
-          alert('Versão em português em breve. Caso necessário, utilize a tradução automática do navegador.');
-          return;
-        }
-        a.setAttribute('href', url);
-      });
-    });
-  } catch(e) {}
 })();
 </script>
 <script id="authors-details-auto">
